@@ -4,7 +4,6 @@ import {
   Button,
   CardMedia,
   Grid,
-  IconButton,
   Toolbar,
   Typography,
 } from '@material-ui/core';
@@ -18,21 +17,25 @@ const useStyles = makeStyles({
     width: '100%',
     margin: '0 auto',
   },
+  navInner: {
+    paddingRight: 50,
+  },
   logo: {
     width: 23,
     height: 23,
   },
-  mainButton: {
-    textTransform: 'none',
-    color: 'white',
-    fontWeight: 'bold',
-  },
   button: {
     color: 'white',
     fontWeight: 'bold',
+    borderRadius: 0,
+    height: 65,
+    '&:hover': {
+      boxShadow: 'inset 0 -4px 0 rgb(255 255 255 / 50%)',
+    },
   },
-  navInner: {
-    paddingRight: 50,
+  text: {
+    textTransform: 'none',
+    fontWeight: 'bold',
   },
 });
 
@@ -49,16 +52,13 @@ export const Navbar: React.FunctionComponent = () => {
           justifyContent='space-between'
         >
           <Grid item>
-            <Button className={classes.mainButton}>
+            <Button className={`${classes.button} ${classes.text}`}>
               <Grid container alignItems='center' spacing={1}>
                 <Grid item>
                   <CardMedia className={classes.logo} image={logo} />
                 </Grid>
                 <Grid item>
-                  <Typography
-                    variant='subtitle2'
-                    className={classes.mainButton}
-                  >
+                  <Typography variant='subtitle1' className={classes.text}>
                     YesNoGame
                   </Typography>
                 </Grid>
@@ -76,9 +76,9 @@ export const Navbar: React.FunctionComponent = () => {
             </Grid>
           </Grid>
           <Grid item>
-            <IconButton>
-              <SearchIcon className={classes.button} />
-            </IconButton>
+            <Button className={`${classes.button} ${classes.text}`}>
+              <SearchIcon />
+            </Button>
           </Grid>
         </Grid>
       </Toolbar>
