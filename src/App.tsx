@@ -1,7 +1,9 @@
-import { Grid, ThemeProvider } from '@material-ui/core';
 import React from 'react';
 import Layout from './hoc/Layout';
+import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core';
 import { createTheme } from '@mui/material/styles';
+import GamePanel from './containers/GamePanel/GamePanel';
 
 const theme = createTheme({
   palette: {
@@ -22,12 +24,23 @@ const theme = createTheme({
 
 const App: React.FunctionComponent = () => {
   return (
+    <Layout>
+      <Switch>
+        <Route path='/' exact component={GamePanel} />
+        <Redirect to='/' />
+      </Switch>
+    </Layout>
+  );
+};
+
+const WrappedApp = () => {
+  return (
     <ThemeProvider theme={theme}>
-      <Layout>
-        <Grid>1</Grid>
-      </Layout>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ThemeProvider>
   );
 };
 
-export default App;
+export default WrappedApp;

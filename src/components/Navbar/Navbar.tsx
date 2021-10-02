@@ -10,6 +10,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import { makeStyles } from '@material-ui/styles';
 import logo from '@images/logo.png';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
   container: {
@@ -37,6 +38,9 @@ const useStyles = makeStyles({
     textTransform: 'none',
     fontWeight: 'bold',
   },
+  navLink: {
+    textDecoration: 'none',
+  },
 });
 
 export const Navbar: React.FunctionComponent = () => {
@@ -52,18 +56,20 @@ export const Navbar: React.FunctionComponent = () => {
           justifyContent='space-between'
         >
           <Grid item>
-            <Button className={`${classes.button} ${classes.text}`}>
-              <Grid container alignItems='center' spacing={1}>
-                <Grid item>
-                  <CardMedia className={classes.logo} image={logo} />
+            <NavLink className={classes.navLink} to='/'>
+              <Button className={`${classes.button} ${classes.text}`}>
+                <Grid container alignItems='center' spacing={1}>
+                  <Grid item>
+                    <CardMedia className={classes.logo} image={logo} />
+                  </Grid>
+                  <Grid item>
+                    <Typography variant='subtitle1' className={classes.text}>
+                      YesNoGame
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Typography variant='subtitle1' className={classes.text}>
-                    YesNoGame
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Button>
+              </Button>
+            </NavLink>
           </Grid>
           <Grid item>
             <Grid container alignItems='center' spacing={1}>
