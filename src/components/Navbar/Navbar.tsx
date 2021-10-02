@@ -75,11 +75,11 @@ export const Navbar: React.FunctionComponent = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item>
+          {/* <Grid item>
             <Button className={`${classes.button} ${classes.text}`}>
               <SearchIcon />
             </Button>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Toolbar>
     </AppBar>
