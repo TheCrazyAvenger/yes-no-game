@@ -1,18 +1,14 @@
 import React from 'react';
-import {
-  AppBar,
-  Button,
-  CardMedia,
-  Grid,
-  Toolbar,
-  Typography,
-} from '@material-ui/core';
+import { AppBar, Button, Grid, Toolbar } from '@material-ui/core';
 import SearchIcon from '@mui/icons-material/Search';
 import { makeStyles } from '@material-ui/styles';
-import logo from '@images/logo.png';
-import { NavLink } from 'react-router-dom';
+
+import { Logo } from '@components/Logo/Logo';
 
 const useStyles = makeStyles({
+  root: {
+    marginBottom: 30,
+  },
   container: {
     maxWidth: 1000,
     width: '100%',
@@ -47,7 +43,7 @@ export const Navbar: React.FunctionComponent = () => {
   const classes = useStyles();
 
   return (
-    <AppBar color='secondary' position='static'>
+    <AppBar color='secondary' position='static' className={classes.root}>
       <Toolbar className={classes.container}>
         <Grid
           container
@@ -55,22 +51,7 @@ export const Navbar: React.FunctionComponent = () => {
           alignItems='center'
           justifyContent='space-between'
         >
-          <Grid item>
-            <NavLink className={classes.navLink} to='/'>
-              <Button className={`${classes.button} ${classes.text}`}>
-                <Grid container alignItems='center' spacing={1}>
-                  <Grid item>
-                    <CardMedia className={classes.logo} image={logo} />
-                  </Grid>
-                  <Grid item>
-                    <Typography variant='subtitle1' className={classes.text}>
-                      YesNoGame
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Button>
-            </NavLink>
-          </Grid>
+          <Logo />
           <Grid item>
             <Grid container alignItems='center' spacing={1}>
               <Grid item>
