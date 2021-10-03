@@ -6,23 +6,13 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@material-ui/core';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
-import l1 from '@images/logos/1.svg';
-import l2 from '@images/logos/2.svg';
-import l3 from '@images/logos/3.svg';
-import l4 from '@images/logos/4.svg';
-import l5 from '@images/logos/5.svg';
-import l6 from '@images/logos/6.svg';
-import l7 from '@images/logos/7.svg';
-import l8 from '@images/logos/8.svg';
-import l9 from '@images/logos/9.svg';
-import l10 from '@images/logos/10.svg';
-import l11 from '@images/logos/11.svg';
-import l12 from '@images/logos/12.svg';
+import { logos } from '@utilities/constants';
+import { NavLink } from 'react-router-dom';
 
 type GameItemProps = {
   title: string;
   text: string;
-  difficult: string;
+  difficult: number;
   time: string;
   color: string;
   id: number;
@@ -32,8 +22,39 @@ const useStyles = makeStyles({
   root: {
     background:
       'linear-gradient(to bottom, rgba(240,240,240,0.9), rgba(245,245,245,0.9))',
-    maxWidth: 300,
-    margin: '0 auto',
+    maxWidth: 315,
+    position: 'relative',
+  },
+  diff: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: 85,
+    height: 50,
+    overflow: 'hidden',
+    pointerEvents: 'none',
+  },
+
+  diffLine: {
+    display: 'block',
+    position: 'absolute',
+    left: '40%',
+    top: '40%',
+    height: 6,
+    width: '300%',
+    font: 'normal 700 0.7em/20px "Raleway"',
+    textAlign: 'center',
+    transform: 'translateX(-65%) translateY(-45%) rotate(-40deg)',
+    textTransform: 'uppercase',
+  },
+  orange: {
+    background: '#ffbf22',
+  },
+  green: {
+    background: '#a0cf6a',
+  },
+  red: {
+    background: '#e82b3c',
   },
   text: {
     overflow: 'hidden',
@@ -46,18 +67,20 @@ const useStyles = makeStyles({
     width: 110,
     height: 160,
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   image: {
     width: '100%',
     height: '55%',
     margin: '0 auto',
   },
+  navLink: {
+    textDecoration: 'none',
+  },
   button: {
     textTransform: 'none',
     textAlign: 'left',
-    margin: 5,
+    borderRadius: 0,
+    padding: '8px 3px 4px 6px',
   },
   info: {
     marginTop: '1px !important',
@@ -74,52 +97,65 @@ export const GameItem: React.FunctionComponent<GameItemProps> = ({
 }) => {
   const classes = useStyles();
 
-  const logos = [l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12];
+  const diffLineCls = [classes.diffLine];
+
+  if (difficult < 4) diffLineCls.push(classes.green);
+  if (difficult >= 4) diffLineCls.push(classes.orange);
+  if (difficult >= 8) diffLineCls.push(classes.red);
 
   return (
-    <Button className={classes.button}>
-      <Grid container className={classes.root} spacing={1}>
-        <Grid
-          item
-          className={classes.imageDiv}
-          style={{ backgroundColor: color }}
-        >
-          <CardMedia
-            component='svg'
-            className={classes.image}
-            image={logos[id - 1]}
-          />
-        </Grid>
-        <Grid item xs>
-          <Typography variant='subtitle1'>{title}</Typography>
-          <Typography
-            variant='caption'
-            className={classes.text}
-            color='text.secondary'
-          >
-            {text}
-          </Typography>
-          <Grid
-            container
-            spacing={1}
-            alignItems='center'
-            className={classes.info}
-          >
-            <Grid item>
-              <Grid container>
-                <AccessTimeIcon fontSize='small' />
-                <Typography variant='subtitle2'>{`${time} мин.`}</Typography>
-              </Grid>
+    <Grid item>
+      <NavLink className={classes.navLink} to={`/story/${id}`}>
+        <Button className={classes.button}>
+          <Grid container className={classes.root} spacing={1}>
+            <Grid item className={classes.diff}>
+              <Typography className={diffLineCls.join(' ')} component='span' />
             </Grid>
-            <Grid item>
-              <Grid container>
-                <LocalFireDepartmentIcon fontSize='small' />
-                <Typography variant='subtitle2'>{`${difficult} / 10`}</Typography>
+            <Grid
+              item
+              className={classes.imageDiv}
+              alignItems='center'
+              justifyContent='center'
+              style={{ backgroundColor: color }}
+            >
+              <CardMedia
+                component='svg'
+                className={classes.image}
+                image={logos[id - 1]}
+              />
+            </Grid>
+            <Grid item xs>
+              <Typography variant='subtitle1'>{title}</Typography>
+              <Typography
+                variant='caption'
+                className={classes.text}
+                color='text.secondary'
+              >
+                {text}
+              </Typography>
+              <Grid
+                container
+                spacing={1}
+                alignItems='center'
+                className={classes.info}
+              >
+                <Grid item>
+                  <Grid container>
+                    <AccessTimeIcon fontSize='small' />
+                    <Typography variant='subtitle2'>{`${time} мин.`}</Typography>
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <Grid container>
+                    <LocalFireDepartmentIcon fontSize='small' />
+                    <Typography variant='subtitle2'>{`${difficult} / 10`}</Typography>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </Grid>
-    </Button>
+        </Button>
+      </NavLink>
+    </Grid>
   );
 };

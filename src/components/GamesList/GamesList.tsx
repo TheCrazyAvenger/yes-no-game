@@ -5,14 +5,11 @@ import React from 'react';
 import { GameItem } from './GameItem/GameItem';
 
 const useStyles = makeStyles({
-  root: {
-    width: '100%',
-    margin: '0 auto',
-  },
+  root: {},
 });
 
 const addYesNo = () => {
-  return yesno.map((item, i) => {
+  return yesno.map((item) => {
     const { title, text, difficult, time, color, id } = item;
 
     return (

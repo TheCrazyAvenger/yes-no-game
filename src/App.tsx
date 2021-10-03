@@ -6,6 +6,7 @@ import { createTheme } from '@mui/material/styles';
 import GamePanel from './containers/GamePanel/GamePanel';
 import { Info } from '@components/Info/Info';
 import { Rules } from '@components/Rules/Rules';
+import YesNo from '@containers/YesNo/YesNo';
 
 const theme = createTheme({
   palette: {
@@ -31,6 +32,7 @@ const App: React.FunctionComponent = () => {
         <Route path='/' exact component={GamePanel} />
         <Route path='/info' component={Info} />
         <Route path='/rules' component={Rules} />
+        <Route path='/story/:id' component={YesNo} />
         <Redirect to='/' />
       </Switch>
     </Layout>

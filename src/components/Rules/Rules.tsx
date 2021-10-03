@@ -6,13 +6,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import React from 'react';
-import { colors, rulesInfo } from '@utilities/constants';
-import rules1 from '@images/rules/rules1.svg';
-import rules2 from '@images/rules/rules2.svg';
-import rules3 from '@images/rules/rules3.svg';
-import rules4 from '@images/rules/rules4.svg';
-import rules5 from '@images/rules/rules5.svg';
-import rules6 from '@images/rules/rules6.svg';
+import { colors, rulesIcons, rulesInfo } from '@utilities/constants';
 
 const useStyles = makeStyles({
   root: {
@@ -52,15 +46,6 @@ const useStyles = makeStyles({
 
 export const Rules: React.FunctionComponent = () => {
   const classes = useStyles();
-
-  const rulesIcons: Array<string> = [
-    rules1,
-    rules2,
-    rules3,
-    rules4,
-    rules5,
-    rules6,
-  ];
 
   const addRules = () => {
     return rulesInfo.map((item, i) => {
