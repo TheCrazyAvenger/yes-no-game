@@ -11,7 +11,6 @@ const useStyles = makeStyles({
     width: '100%',
     margin: '0 auto',
     padding: 20,
-    paddingBottom: 0,
   },
   title: {
     fontWeight: 'bold',
@@ -19,7 +18,7 @@ const useStyles = makeStyles({
   },
   info: {
     borderTop: '1px solid rgba(0,0,0,0.1)',
-    margin: '40px 0 20px 0',
+    marginTop: 40,
     paddingTop: '25px !important',
   },
 });
@@ -34,7 +33,7 @@ const GamePanel: React.FunctionComponent = () => {
           <Typography className={classes.title} variant='h3' color='secondary'>
             Все данетки
           </Typography>
-          <Typography>В каталоге 12 данеток</Typography>
+          <Typography variant='subtitle2'>В каталоге 12 данеток</Typography>
         </Grid>
         <Grid item>
           <GamesList />

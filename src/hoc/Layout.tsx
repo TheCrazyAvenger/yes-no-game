@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, makeStyles } from '@material-ui/core';
+import { Button, Grid, makeStyles } from '@material-ui/core';
 import { Navbar } from '@components/Navbar/Navbar';
 import { Logo } from '@components/Logo/Logo';
 
@@ -14,13 +14,28 @@ const useStyles = makeStyles({
     width: '100%',
     margin: '0 auto',
   },
+  button: {
+    color: 'white',
+    fontWeight: 'bold',
+    borderRadius: 0,
+    textTransform: 'none',
+    height: 65,
+    '&:hover': {
+      boxShadow: 'inset 0 -4px 0 rgb(255 255 255 / 50%)',
+    },
+  },
   footer: {
     backgroundColor: '#484848',
+    padding: '0 20px',
   },
 });
 
 const Layout: React.FunctionComponent = (props) => {
   const classes = useStyles();
+
+  const openOrigin = () => {
+    window.open('https://yesnogame.net/');
+  };
 
   return (
     <Grid className={classes.root}>
@@ -29,9 +44,12 @@ const Layout: React.FunctionComponent = (props) => {
       <Grid
         container
         className={`${classes.child} ${classes.footer}`}
-        justifyContent='center'
+        justifyContent='space-between'
       >
         <Logo />
+        <Button className={classes.button} onClick={openOrigin}>
+          Ссылка на источник
+        </Button>
       </Grid>
     </Grid>
   );

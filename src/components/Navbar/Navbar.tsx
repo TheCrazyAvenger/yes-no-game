@@ -4,23 +4,18 @@ import SearchIcon from '@mui/icons-material/Search';
 import { makeStyles } from '@material-ui/styles';
 
 import { Logo } from '@components/Logo/Logo';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
     marginBottom: 30,
   },
   container: {
-    maxWidth: 1000,
+    maxWidth: 1070,
     width: '100%',
     margin: '0 auto',
   },
-  navInner: {
-    paddingRight: 50,
-  },
-  logo: {
-    width: 23,
-    height: 23,
-  },
+
   button: {
     color: 'white',
     fontWeight: 'bold',
@@ -45,20 +40,19 @@ export const Navbar: React.FunctionComponent = () => {
   return (
     <AppBar color='secondary' position='static' className={classes.root}>
       <Toolbar className={classes.container}>
-        <Grid
-          container
-          className={classes.navInner}
-          alignItems='center'
-          justifyContent='space-between'
-        >
+        <Grid container alignItems='center' justifyContent='space-between'>
           <Logo />
           <Grid item>
             <Grid container alignItems='center' spacing={1}>
               <Grid item>
-                <Button className={classes.button}>Об игре</Button>
+                <NavLink className={classes.navLink} to='/info'>
+                  <Button className={classes.button}>Об игре</Button>
+                </NavLink>
               </Grid>
               <Grid item>
-                <Button className={classes.button}>Правила</Button>
+                <NavLink className={classes.navLink} to='/rules'>
+                  <Button className={classes.button}>Правила</Button>
+                </NavLink>
               </Grid>
             </Grid>
           </Grid>

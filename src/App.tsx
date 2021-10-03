@@ -4,6 +4,8 @@ import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core';
 import { createTheme } from '@mui/material/styles';
 import GamePanel from './containers/GamePanel/GamePanel';
+import { Info } from '@components/Info/Info';
+import { Rules } from '@components/Rules/Rules';
 
 const theme = createTheme({
   palette: {
@@ -27,6 +29,8 @@ const App: React.FunctionComponent = () => {
     <Layout>
       <Switch>
         <Route path='/' exact component={GamePanel} />
+        <Route path='/info' component={Info} />
+        <Route path='/rules' component={Rules} />
         <Redirect to='/' />
       </Switch>
     </Layout>

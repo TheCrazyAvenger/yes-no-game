@@ -5,7 +5,8 @@
       "@store/*": ["./src/store/*"],
       "@components/*": ["./src/components/*"],
       "@utilities/*": ["./src/utilities/*"],
-      "@images/*": ["./src/images/*"]
+      "@images/*": ["./src/images/*"],
+      "@containers/*": ["./src/containers/*"]
     }
   }
 }
