@@ -46,7 +46,7 @@ const useStyles = makeStyles({
     padding: '40px 20px',
     margin: '20px 0 30px 0',
     boxShadow: '6px 6px 0 rgb(0 0 0 / 10%)',
-    transition: 'background .15s',
+    transition: 'background .15s, max-height 5s',
   },
   button: {
     borderColor: '#202020',
@@ -154,7 +154,7 @@ const YesNo: React.FunctionComponent<YesNoProps> = ({ match }) => {
       >
         <Grid item xs>
           <Typography className={classes.title} color='secondary' variant='h6'>
-            {`Время: ${time} минут`}
+            {`Время: ${time} мин.`}
           </Typography>
         </Grid>
         <Grid item xs>

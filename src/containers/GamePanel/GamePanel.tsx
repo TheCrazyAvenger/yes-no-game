@@ -1,7 +1,7 @@
 import { GamesList } from '@components/GamesList/GamesList';
 import { Grid, Paper, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const useStyles = makeStyles({
   paper: {
@@ -25,6 +25,8 @@ const useStyles = makeStyles({
 
 const GamePanel: React.FunctionComponent = () => {
   const classes = useStyles();
+
+  useEffect(() => {});
 
   return (
     <Paper className={classes.paper}>
