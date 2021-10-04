@@ -13,7 +13,7 @@ type GameItemProps = {
   title: string;
   text: string;
   difficult: number;
-  time: string;
+  time: number;
   color: string;
   id: number;
 };

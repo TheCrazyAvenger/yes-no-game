@@ -7,6 +7,8 @@ import GamePanel from './containers/GamePanel/GamePanel';
 import { Info } from '@components/Info/Info';
 import { Rules } from '@components/Rules/Rules';
 import YesNo from '@containers/YesNo/YesNo';
+import { Provider } from 'react-redux';
+import store from '@store/store';
 
 const theme = createTheme({
   palette: {
@@ -41,11 +43,13 @@ const App: React.FunctionComponent = () => {
 
 const WrappedApp = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
+    </Provider>
   );
 };
 

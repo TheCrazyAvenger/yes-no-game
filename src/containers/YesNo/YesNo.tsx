@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { logos, yesno } from '@utilities/constants';
+
 import {
   Button,
   CardMedia,
@@ -11,6 +11,8 @@ import {
 import { NavLink } from 'react-router-dom';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useTypedSelector } from '@store/hooks/useTypedSelector';
+import { logos } from '@utilities/constants';
 
 type YesNoProps = {
   match: object;
@@ -60,15 +62,20 @@ const useStyles = makeStyles({
     padding: '40px',
     textAlign: 'center',
   },
+  hide: {
+    cursor: 'not-allowed',
+  },
 });
 
 const YesNo: React.FunctionComponent<YesNoProps> = ({ match }) => {
   const [showSolution, setsolution] = useState<Boolean>(false);
 
+  const yesno = useTypedSelector((state) => state.game.yesno);
+
   const classes = useStyles();
   const currentId = Object.values(match)[3].id;
 
-  const yesnoInfo = yesno[currentId - 1];
+  const yesnoInfo = yesno![currentId - 1];
   const { title, text, solution, difficult, time, color, id } = yesnoInfo;
 
   const solutionHandler = () => {
@@ -97,6 +104,24 @@ const YesNo: React.FunctionComponent<YesNoProps> = ({ match }) => {
     }
   };
 
+  const nextPageHandler = () => {
+    if (yesno && id < yesno.length) {
+      return id + 1;
+    } else {
+      return id;
+    }
+  };
+
+  const showNext = () => {
+    const cls = [classes.title];
+    if (yesno && id === yesno.length) {
+      cls.push(classes.hide);
+      return cls.join(' ');
+    } else {
+      return cls.join('');
+    }
+  };
+
   return (
     <>
       <Paper className={classes.root} style={{ backgroundColor: color }}>
@@ -110,17 +135,17 @@ const YesNo: React.FunctionComponent<YesNoProps> = ({ match }) => {
             </NavLink>
           </Grid>
           <Grid item>
-            <NavLink className={classes.navLink} to={`${id + 1}`}>
-              <Typography className={classes.title} variant='subtitle2'>
+            <NavLink className={classes.navLink} to={`${nextPageHandler()}`}>
+              <Typography className={`${showNext()}`} variant='subtitle2'>
                 К следующей данетке
               </Typography>
-              <ArrowForwardIosIcon />
+              <ArrowForwardIosIcon className={`${showNext()}`} />
             </NavLink>
           </Grid>
         </Grid>
         <Grid container className={classes.inner} alignItems='center'>
           <Grid item className={classes.imageDiv}>
-            <CardMedia className={classes.image} image={logos[id - 1]} />
+            <CardMedia className={classes.image} image={logos![id - 1]} />
           </Grid>
           <Grid item xs>
             <Grid container direction='column'>

@@ -1,7 +1,10 @@
-import { GamesList } from '@components/GamesList/GamesList';
-import { Grid, Paper, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useTypedSelector } from '@store/hooks/useTypedSelector';
+import { makeStyles } from '@material-ui/styles';
+import { Grid, Paper, Typography } from '@material-ui/core';
+import { GamesList } from '@components/GamesList/GamesList';
+import { fetchGame } from '@store/actions/game';
 
 const useStyles = makeStyles({
   paper: {
@@ -26,7 +29,13 @@ const useStyles = makeStyles({
 const GamePanel: React.FunctionComponent = () => {
   const classes = useStyles();
 
-  useEffect(() => {});
+  const yesno = useTypedSelector((state) => state.game.yesno);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchGame());
+  }, [dispatch]);
 
   return (
     <Paper className={classes.paper}>
@@ -35,20 +44,22 @@ const GamePanel: React.FunctionComponent = () => {
           <Typography className={classes.title} variant='h3' color='secondary'>
             Все данетки
           </Typography>
-          <Typography variant='subtitle2'>В каталоге 12 данеток</Typography>
+          <Typography variant='subtitle2'>
+            В каталоге {yesno ? yesno.length : 0} данеток
+          </Typography>
         </Grid>
         <Grid item>
-          <GamesList />
+          <GamesList yesno={yesno} />
         </Grid>
         <Grid item className={classes.info}>
           <Typography variant='h6'>Об игре</Typography>
 
           <Typography variant='subtitle2'>
-            {`Данетки - разновидность игры в загадки. В классическом варианте
-          водящий описывает странную ситуацию, а угадывающие должны, задавая
-          уточняющие вопросы, выяснить её. При угадывании можно задавать
-          вопросы, но ответом на них могут быть только слова «да» и «нет» (а
-          также «не имеет значения» или «не корректно»).`}
+            Данетки - разновидность игры в загадки. В классическом варианте
+            водящий описывает странную ситуацию, а угадывающие должны, задавая
+            уточняющие вопросы, выяснить её. При угадывании можно задавать
+            вопросы, но ответом на них могут быть только слова «да» и «нет» (а
+            также «не имеет значения» или «не корректно»).
           </Typography>
         </Grid>
       </Grid>
